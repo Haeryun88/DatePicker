@@ -1,7 +1,11 @@
 import * as React from 'react';
 const date = new Date();
 
-export default function DatePicker() {
+const Days = (props) => {
+  return <div>{props.days}</div>;
+};
+
+const DatePicker = () => {
   //연도 구하기
   const [year, setYear] = React.useState(date.getFullYear());
   //날짜 구하기
@@ -61,9 +65,13 @@ export default function DatePicker() {
             <div className="day">금</div>
             <div className="day">토</div>
           </div>
-          <div className="dates"></div>
+          <div className="dates">
+            {dates.map((days) => <Days days={days}/>)}
+          </div>
         </div>
       </div>
     </div>
   );
-}
+};
+
+export default DatePicker;
