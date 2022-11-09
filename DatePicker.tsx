@@ -3,16 +3,19 @@ import * as React from 'react';
 const nowdate = new Date();
 
 const Days = (props) => {
-  const [day, setDay] = React.useState(props.days);
-  console.log(day);
-  return <div >{props.days}</div>;
+  
+
+  // return <div onClick={props.onGetDay}>{props.days}</div>;
+  return <div onClick={props.onGetDay}>{props.days}</div>;
 };
 
 const DatePicker = () => {
   //연도 구하기
   const [year, setYear] = React.useState(nowdate.getFullYear());
-  //날짜 구하기
+  //월 구하기
   const [month, setMonth] = React.useState(nowdate.getMonth() + 1);
+  //날짜 구하기
+  const [day, setDay] = React.useState(1);
 
   //이전 연도와 지금 연도
   const prevLast = new Date(year, month, 0);
@@ -45,6 +48,13 @@ const DatePicker = () => {
   //날짜 객체 추가
   const dates = prevDates.concat(thisDates, nextDates);
 
+  //날짜 구하는 함수
+  const onGetDay = (e) => {
+    let dayValue;
+    dayValue = e.target.innerHTML;
+    console.log(dayValue);
+    setDay(dayValue)
+  };
   return (
     <div>
       <div className="calendar">
@@ -70,7 +80,7 @@ const DatePicker = () => {
           </div>
           <div className="dates">
             {dates.map((days) => (
-              <Days days={days} />
+              <Days days={days} onGetDay={onGetDay} />
             ))}
           </div>
         </div>
