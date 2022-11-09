@@ -1,4 +1,5 @@
 import * as React from 'react';
+import './DatePicker.css';
 const nowdate = new Date();
 
 const Days = (props) => {
@@ -26,7 +27,7 @@ const DatePicker = () => {
   const PLDate = prevLast.getDate();
   const PLDay = prevLast.getDay();
 
-  //이번달 마지막 날과 요일
+  //이번달 마지막날과 요일
   const TLDate = thisLast.getDate();
   const TLDay = thisLast.getDay();
 
@@ -42,7 +43,7 @@ const DatePicker = () => {
     }
   }
 
-  for (let i = 1; i < 7 - TLDay; i++) {
+  for (let i = 1; i < 14 - TLDay; i++) {
     nextDates.push(i);
   }
 
