@@ -1,12 +1,13 @@
 import * as React from 'react';
-
 const nowdate = new Date();
 
 const Days = (props) => {
-  
-
   // return <div onClick={props.onGetDay}>{props.days}</div>;
-  return <div onClick={props.onGetDay}>{props.days}</div>;
+  return (
+    <div className="day" onClick={props.onGetDay}>
+      {props.days}
+    </div>
+  );
 };
 
 const DatePicker = () => {
@@ -53,7 +54,7 @@ const DatePicker = () => {
     let dayValue;
     dayValue = e.target.innerHTML;
     console.log(dayValue);
-    setDay(dayValue)
+    setDay(dayValue);
   };
   return (
     <div>
