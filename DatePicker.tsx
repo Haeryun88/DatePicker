@@ -1,15 +1,18 @@
 import * as React from 'react';
-const date = new Date();
+
+const nowdate = new Date();
 
 const Days = (props) => {
-  return <div>{props.days}</div>;
+  const [day, setDay] = React.useState(props.days);
+  console.log(day);
+  return <div >{props.days}</div>;
 };
 
 const DatePicker = () => {
   //연도 구하기
-  const [year, setYear] = React.useState(date.getFullYear());
+  const [year, setYear] = React.useState(nowdate.getFullYear());
   //날짜 구하기
-  const [month, setMonth] = React.useState(date.getMonth() + 1);
+  const [month, setMonth] = React.useState(nowdate.getMonth() + 1);
 
   //이전 연도와 지금 연도
   const prevLast = new Date(year, month, 0);
@@ -66,7 +69,9 @@ const DatePicker = () => {
             <div className="day">토</div>
           </div>
           <div className="dates">
-            {dates.map((days) => <Days days={days}/>)}
+            {dates.map((days) => (
+              <Days days={days} />
+            ))}
           </div>
         </div>
       </div>
