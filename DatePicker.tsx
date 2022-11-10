@@ -17,7 +17,7 @@ const DatePicker = () => {
   //월 구하기
   const [month, setMonth] = React.useState(nowdate.getMonth() + 1);
   //날짜 구하기
-  const [day, setDay] = React.useState(1);
+  const [day, setDay] = React.useState(nowdate.getDay());
 
   //이전 연도와 지금 연도
   const prevLast = new Date(year, month, 0);
@@ -43,7 +43,7 @@ const DatePicker = () => {
     }
   }
 
-  for (let i = 1; i < 14 - TLDay; i++) {
+  for (let i = 1; i < 7 - TLDay; i++) {
     nextDates.push(i);
   }
 
@@ -57,17 +57,42 @@ const DatePicker = () => {
     console.log(dayValue);
     setDay(dayValue);
   };
+
+  //이전 버튼을 클릭했을시
+  const onPrevMonth = () => {
+    setMonth(month - 1);
+    if (month < 2) {
+      setYear(year - 1);
+      setMonth(12);
+    }
+  };
+  //이후 버튼을 클릭했을시
+  const onNextMonth = () => {
+    setMonth(month + 1);
+    if (month > 11) {
+      setYear(year + 1);
+      setMonth(1);
+    }
+  };
+
   return (
     <div>
       <div className="calendar">
         <div className="header">
-          <div className="year-month">
-            {year}.{month < 10 ? '0' + month : month}
+          <div>
+            {year}.{month < 10 ? '0' + month : month}.
+            {day < 10 ? '0' + day : day}
           </div>
           <div className="nav">
-            <p className="nav-btn go-prev">&lt;</p>
-            <p className="Days">yyyy.mm</p>
-            <p className="nav-btn go-next">&gt;</p>
+            <p onClick={onPrevMonth} className="nav-btn go-prev">
+              &lt;
+            </p>
+            <p className="year-month">
+              {year}.{month < 10 ? '0' + month : month}
+            </p>
+            <p onClick={onNextMonth} className="nav-btn go-next">
+              &gt;
+            </p>
           </div>
         </div>
         <div className="main">
